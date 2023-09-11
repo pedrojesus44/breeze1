@@ -30,9 +30,23 @@ Route::get('/contato', function () {
     return 'Contato';
 });
 
-Route::get('/', 'App\Http\Controllers\PrincipalController@principal');
-Route::get('/sobrenos', 'App\Http\Controllers\SobreNosController@principal');
-Route::get('/contato', 'App\Http\Controllers\ContatoController@principal');
+Route::get('/', 'App\Http\Controllers\PrincipalController@principal')->name('site.index');
+Route::get('/sobrenos', 'App\Http\Controllers\SobreNosController@principal')->name('site.sobrenos');
+Route::get('/contato', 'App\Http\Controllers\ContatoController@principal')->name('site.contato');
+
+Route::prefix('/admin')->group (function() {
+    Route::get('/clientes', function(){return 'Clientes';});
+    Route::get('/fornecedores', 'App\Http\Controllers\FornecedorController@index')->name('admin.fornecedores');
+    Route::get('/produtos', function(){return 'Produtos';});
+});
+
+Route::get('/admin', function() {
+    return redirect()->route('site.index');
+});
+
+Route::fallback(function() {
+    echo 'a rota não existe <a href= "'.route('site.index').'"> clique aqui </a> ';
+});
 
 Route::get('/contato/{nome?}/{mensagem?}',
     function(string $nome, string $mensagem = 'sem texto')
