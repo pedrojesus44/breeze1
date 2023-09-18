@@ -33,6 +33,8 @@ Route::get('/contato', function () {
 Route::get('/', 'App\Http\Controllers\PrincipalController@principal')->name('site.index');
 Route::get('/sobrenos', 'App\Http\Controllers\SobreNosController@principal')->name('site.sobrenos');
 Route::get('/contato', 'App\Http\Controllers\ContatoController@principal')->name('site.contato');
+Route::post('/contato', 'App\Http\Controllers\ContatoController@principal')->name('site.contato');
+Route::get('/login', function(){return 'Login';})->name('site.login');
 
 Route::prefix('/admin')->group (function() {
     Route::get('/clientes', function(){return 'Clientes';});
