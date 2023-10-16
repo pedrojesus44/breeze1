@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up()
     {
+        // Criando atributos da tabela
         Schema::create('fornecedores', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 50);
+            $table->string('site', 50);
+            $table->string('uf', 50);
+            $table->string('email', 50);
             $table->timestamps();
         });
     }
@@ -25,6 +29,11 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('fornecedores', function(Blueprint $table) {
+            //remover a coluna site
+            $table->dropColumn('site');
+        });
+
         Schema::dropIfExists('fornecedores');
         // Schema::drop('fornecedores');
     }

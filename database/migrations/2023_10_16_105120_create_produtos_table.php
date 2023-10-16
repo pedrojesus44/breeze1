@@ -9,17 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         // Criando atributos da tabela
-        Schema::create('site_contatos', function (Blueprint $table) {
+        Schema::create('produtos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('nome', 50);
-            $table->string('telefone', 20);
-            $table->string('email', 80);
-            $table->integer('motivo_contato');
-            $table->text('mensagem');
+            $table->string('descricao', 100);
+            $table->string('peso', 10);
+            $table->string('preco_venda', 20);
+            $table->string('estoque_minimo', 50);
+            $table->string('estoque_maximo', 50);
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('site_contatos');
+        Schema::dropIfExists('produtos');
     }
 };

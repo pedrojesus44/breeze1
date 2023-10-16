@@ -9,24 +9,23 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         // Criando atributos da tabela
-        Schema::create('unidades', function (Blueprint $table) {
+        Schema::create('produto_detalhes', function (Blueprint $table) {
             $table->id();
-            $table->string('unidade', 5); //cm, mn, kg
-            $table->string('descricao', 30);
+            $table->string('comprimento', 10);
+            $table->string('largura', 10);
+            $table->string('altura', 50);
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('unidades');
+        Schema::dropIfExists('produto_detalhes');
     }
 };
